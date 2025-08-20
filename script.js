@@ -1,11 +1,9 @@
-// Riferimenti al DOM
 const grid = document.getElementById("grid");
 const resizeBtn = document.getElementById("resizeBtn");
 
-// Crea una griglia n x n
 function buildGrid(n) {
-  grid.style.setProperty("--size", n); // comunica al CSS quante colonne
-  grid.innerHTML = "";                 // reset griglia
+  grid.style.setProperty("--size", n);
+  grid.innerHTML = "";
 
   const total = n * n;
   for (let i = 0; i < total; i++) {
@@ -15,32 +13,26 @@ function buildGrid(n) {
   }
 }
 
-// Effetto scia: aggiunge la classe quando il mouse passa su una cella
+// Colora ogni cella con un RGB casuale ad ogni passaggio del mouse
 grid.addEventListener("mouseover", (e) => {
-  if (e.target.classList.contains("cell")) {
-    e.target.classList.add("hovered");
-  }
+  if (!e.target.classList.contains("cell")) return;
+
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+
+  e.target.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 });
 
-// Bottone: chiede nuova dimensione e ricrea la griglia
-if (resizeBtn) {
-  resizeBtn.addEventListener("click", () => {
-    const input = prompt("Quante celle per lato? (max 100)", "16");
-    if (input === null) return;
+resizeBtn?.addEventListener("click", () => {
+  const input = prompt("Quante celle per lato? (max 100)", "16");
+  if (input === null) return;
 
-    const n = parseInt(input, 10);
-    if (Number.isNaN(n) || n <= 0) {
-      alert("Inserisci un numero valido maggiore di 0.");
-      return;
-    }
-    if (n > 100) {
-      alert("Massimo 100 per lato per evitare rallentamenti.");
-      return;
-    }
+  const n = parseInt(input, 10);
+  if (Number.isNaN(n) || n <= 0) return alert("Inserisci un numero valido > 0.");
+  if (n > 100) return alert("Massimo 100 per lato.");
 
-    buildGrid(n);
-  });
-}
+  buildGrid(n);
+});
 
-// Griglia iniziale
 buildGrid(16);

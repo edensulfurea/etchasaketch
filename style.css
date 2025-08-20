@@ -22,9 +22,7 @@
     }
 
 
-.cell.hovered{
-    background: #333;
-}
+
 /* Variabile CSS per il numero di colonne della griglia */
 :root { --size: 16; }
 
