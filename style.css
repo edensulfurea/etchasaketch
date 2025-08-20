@@ -9,7 +9,10 @@
 #grid {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
-
+ width: 960px;      /* spazio totale fisso */
+  height: 960px;     /* spazio totale fisso */
+  margin: 0 auto;
+   border: 1px solid #ddd;
     
 }
 .cell {
@@ -17,3 +20,18 @@
         border: 1px solid #ccc;
         background: #f7f7f7;
     }
+
+
+.cell.hovered{
+    background: #333;
+}
+/* Variabile CSS per il numero di colonne della griglia */
+:root { --size: 16; }
+
+#resizeBtn {
+  margin: 16px auto;
+  display: block;
+  padding: 8px 12px;
+  font-family: inherit;
+  cursor: pointer;
+}
