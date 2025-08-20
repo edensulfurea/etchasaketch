@@ -1,0 +1,19 @@
+*{
+    box-sizing: border-box;
+}
+
+
+
+
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+
+    
+}
+.cell {
+        aspect-ratio: 1/1;
+        border: 1px solid #ccc;
+        background: #f7f7f7;
+    }
